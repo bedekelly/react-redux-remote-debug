@@ -10,18 +10,3 @@ ReactDOM.render(<App />, document.getElementById("root"));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-
-// Send all console logs via secure websocket back to the dev server.
-const webSocket = new WebSocket("wss://logs.bede.io");
-webSocket.onopen = function(event) {
-  webSocket.send("Reloaded app.");
-
-  function sendAs(prefix) {
-    return msg => webSocket.send(prefix + JSON.stringify(msg));
-  }
-
-  window.onerror = sendAs("Exception: ");
-  console.error = sendAs("Error: ");
-  console.warn = sendAs("Warn: ");
-  console.log = sendAs("Log: ");
-};

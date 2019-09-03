@@ -1,6 +1,7 @@
 import React from "react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import RemoteDebug from "./RemoteDebug";
 import Counter from "./Counter";
 
 const initialState = {
@@ -28,7 +29,9 @@ const store = createStore(
 export default function App() {
   return (
     <Provider store={store}>
-      <Counter />
+      <RemoteDebug store={store}>
+        <Counter />
+      </RemoteDebug>
     </Provider>
   );
 }
